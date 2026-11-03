@@ -2,7 +2,6 @@
 
 A private RCA workspace built with Next.js, React, TypeScript and Supabase, deployed on Vercel.
 
-
 ## Working features
 
 - Email/password authentication, account confirmation, protected workspace and sign-out.
