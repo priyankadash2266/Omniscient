@@ -2,7 +2,6 @@
 
 A private RCA workspace built with Next.js, React, TypeScript and Supabase, deployed on Vercel.
 
-Inspired by the requirements and phase-1 HLD from [jatin-mishra/Omniscient](https://github.com/jatin-mishra/Omniscient). This repository contains an independently built implementation, not a fork of application code.
 
 ## Working features
 
