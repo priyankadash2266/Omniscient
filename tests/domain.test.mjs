@@ -1,0 +1,10 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {stripTypeScriptTypes} from 'node:module';
+import {readFile} from 'node:fs/promises';
+const source=stripTypeScriptTypes(await readFile(new URL('../lib/domain.ts',import.meta.url),'utf8'));
+const {sampleReports,rankReports,completeness}=await import('data:text/javascript;base64,'+Buffer.from(source).toString('base64'));
+test('RCA samples measure completeness against all ten required sections',()=>{const reports=sampleReports();assert.equal(completeness(reports[0]),100);assert(completeness(reports[2])<100)});
+test('evidence search retrieves related incident and exact source sections',()=>{const reports=sampleReports(),matches=rankReports(reports,'payment timeout');assert.equal(matches[0].report.service,'Payments API');assert(matches[0].hits.some(x=>x.section==='Root cause'))});
+test('unsupported and stopword-only queries abstain',()=>{const reports=sampleReports();assert.deepEqual(rankReports(reports,'quantum hedgehog'),[]);assert.deepEqual(rankReports(reports,'what was the and how'),[])});
+test('search cannot return documents outside the supplied permission scope',()=>{const reports=sampleReports();assert.deepEqual(rankReports(reports.filter(x=>x.service==='Search'),'payment timeout'),[])});
