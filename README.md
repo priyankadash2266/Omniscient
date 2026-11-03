@@ -2,6 +2,8 @@
 
 A private RCA workspace built with Next.js, React, TypeScript and Supabase, deployed on Vercel.
 
+**Live app:** [omniscient-alpha-self.vercel.app](https://omniscient-alpha-self.vercel.app)
+
 ## Working features
 
 - Email/password authentication, account confirmation, protected workspace and sign-out.
